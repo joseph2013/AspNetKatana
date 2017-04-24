@@ -850,7 +850,7 @@ namespace Microsoft.Owin.Infrastructure
                 return host;
             }
 
-            string localIpAddress = request.LocalIpAddress ?? "localhost";
+            string localIpAddress = request.LocalIPAddress ?? "localhost";
             var localPort = request.Get<string>(OwinConstants.CommonKeys.LocalPort);
             return string.IsNullOrWhiteSpace(localPort) ? localIpAddress : (localIpAddress + ":" + localPort);
         }

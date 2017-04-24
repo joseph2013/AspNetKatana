@@ -18,9 +18,9 @@ using Microsoft.Owin.Security.Notifications;
 namespace Microsoft.Owin.Security.WsFederation
 {
     /// <summary>
-    /// A per-request authentication handler for the WsFederationAuthenticationMiddleware.
+    /// A per-request authentication handler for the WSFederationAuthenticationMiddleware.
     /// </summary>
-    public class WsFederationAuthenticationHandler : AuthenticationHandler<WsFederationAuthenticationOptions>
+    public class WSFederationAuthenticationHandler : AuthenticationHandler<WSFederationAuthenticationOptions>
     {
         private const string HandledResponse = "HandledResponse";
 
@@ -28,10 +28,10 @@ namespace Microsoft.Owin.Security.WsFederation
         private WsFederationConfiguration _configuration;
 
         /// <summary>
-        /// Creates a new WsFederationAuthenticationHandler
+        /// Creates a new WSFederationAuthenticationHandler
         /// </summary>
         /// <param name="logger"></param>
-        public WsFederationAuthenticationHandler(ILogger logger)
+        public WSFederationAuthenticationHandler(ILogger logger)
         {
             _logger = logger;
         }
@@ -78,7 +78,7 @@ namespace Microsoft.Owin.Security.WsFederation
                 wsFederationMessage.Wreply = Options.Wreply;
             }
 
-            var notification = new RedirectToIdentityProviderNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+            var notification = new RedirectToIdentityProviderNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
             {
                 ProtocolMessage = wsFederationMessage
             };
@@ -139,7 +139,7 @@ namespace Microsoft.Owin.Security.WsFederation
             {
                 IssuerAddress = _configuration.TokenEndpoint ?? string.Empty,
                 Wtrealm = Options.Wtrealm,
-                Wctx = WsFederationAuthenticationDefaults.WctxKey + "=" + Uri.EscapeDataString(Options.StateDataFormat.Protect(properties)),
+                Wctx = WSFederationAuthenticationDefaults.WctxKey + "=" + Uri.EscapeDataString(Options.StateDataFormat.Protect(properties)),
                 Wa = WsFederationActions.SignIn,
             };
 
@@ -148,7 +148,7 @@ namespace Microsoft.Owin.Security.WsFederation
                 wsFederationMessage.Wreply = Options.Wreply;
             }
 
-            var notification = new RedirectToIdentityProviderNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+            var notification = new RedirectToIdentityProviderNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
             {
                 ProtocolMessage = wsFederationMessage
             };
@@ -235,7 +235,7 @@ namespace Microsoft.Owin.Security.WsFederation
                 IFormCollection form = await Request.ReadFormAsync();
                 Request.Body.Seek(0, SeekOrigin.Begin);
     
-                // TODO: a delegate on WsFederationAuthenticationOptions would allow for users to hook their own custom message.
+                // TODO: a delegate on WSFederationAuthenticationOptions would allow for users to hook their own custom message.
                 wsFederationMessage = new WsFederationMessage(form);
             }
 
@@ -247,7 +247,7 @@ namespace Microsoft.Owin.Security.WsFederation
             ExceptionDispatchInfo authFailedEx = null;
             try
             {
-                var messageReceivedNotification = new MessageReceivedNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+                var messageReceivedNotification = new MessageReceivedNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
                 {
                     ProtocolMessage = wsFederationMessage
                 };
@@ -274,7 +274,7 @@ namespace Microsoft.Owin.Security.WsFederation
                     return null;
                 }
 
-                var securityTokenReceivedNotification = new SecurityTokenReceivedNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+                var securityTokenReceivedNotification = new SecurityTokenReceivedNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
                 {
                     ProtocolMessage = wsFederationMessage
                 };
@@ -325,7 +325,7 @@ namespace Microsoft.Owin.Security.WsFederation
                     ticket.Properties.AllowRefresh = false;
                 }
 
-                var securityTokenValidatedNotification = new SecurityTokenValidatedNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+                var securityTokenValidatedNotification = new SecurityTokenValidatedNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
                 {
                     AuthenticationTicket = ticket,
                     ProtocolMessage = wsFederationMessage,
@@ -361,7 +361,7 @@ namespace Microsoft.Owin.Security.WsFederation
                     Options.ConfigurationManager.RequestRefresh();
                 }
 
-                var authenticationFailedNotification = new AuthenticationFailedNotification<WsFederationMessage, WsFederationAuthenticationOptions>(Context, Options)
+                var authenticationFailedNotification = new AuthenticationFailedNotification<WsFederationMessage, WSFederationAuthenticationOptions>(Context, Options)
                 {
                     ProtocolMessage = wsFederationMessage,
                     Exception = authFailedEx.SourceException
@@ -394,7 +394,7 @@ namespace Microsoft.Owin.Security.WsFederation
             {
                 var pairs = ParseDelimited(state);
                 List<string> values;
-                if (pairs.TryGetValue(WsFederationAuthenticationDefaults.WctxKey, out values) && values.Count > 0)
+                if (pairs.TryGetValue(WSFederationAuthenticationDefaults.WctxKey, out values) && values.Count > 0)
                 {
                     string value = values.First();
                     properties = Options.StateDataFormat.Unprotect(value);

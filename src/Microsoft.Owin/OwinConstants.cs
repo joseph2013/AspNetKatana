@@ -61,7 +61,7 @@ namespace Microsoft.Owin
             public const string ClientCertificate = "ssl.ClientCertificate";
             public const string RemoteIpAddress = "server.RemoteIpAddress";
             public const string RemotePort = "server.RemotePort";
-            public const string LocalIpAddress = "server.LocalIpAddress";
+            public const string LocalIpAddress = "server.LocalIPAddress";
             public const string LocalPort = "server.LocalPort";
             public const string IsLocal = "server.IsLocal";
             public const string TraceOutput = "host.TraceOutput";

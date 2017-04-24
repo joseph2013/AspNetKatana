@@ -98,6 +98,7 @@ namespace Microsoft.Owin.Security.ActiveDirectory
                 }
                 catch (Exception)
                 {
+                    throw;
                     // Don't throw exceptions on background threads.
                 }
             }, state: null);

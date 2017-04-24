@@ -8,25 +8,25 @@ namespace Microsoft.Owin.Security.WsFederation
     /// <summary>
     /// Default values related to WsFederation authentication middleware
     /// </summary>
-    public static class WsFederationAuthenticationDefaults
+    public static class WSFederationAuthenticationDefaults
     {
         /// <summary>
-        /// The default value used for WsFederationAuthenticationOptions.AuthenticationType
+        /// The default value used for WSFederationAuthenticationOptions.AuthenticationType
         /// </summary>
         public const string AuthenticationType = "Federation";
 
         /// <summary>
-        /// The prefix used to provide a default WsFederationAuthenticationOptions.CookieName
+        /// The prefix used to provide a default WSFederationAuthenticationOptions.CookieName
         /// </summary>
         public const string CookiePrefix = "WsFederation.";
 
         /// <summary>
-        /// The prefix used to provide a default WsFederationAuthenticationOptions.CookieName
+        /// The prefix used to provide a default WSFederationAuthenticationOptions.CookieName
         /// </summary>
         public const string CookieName = "WsFederationAuth";
 
         /// <summary>
-        /// The default value for WsFederationAuthenticationOptions.Caption.
+        /// The default value for WSFederationAuthenticationOptions.Caption.
         /// </summary>
         public const string Caption = "WsFederation";
 

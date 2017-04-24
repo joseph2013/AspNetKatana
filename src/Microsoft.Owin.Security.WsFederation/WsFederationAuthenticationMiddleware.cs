@@ -17,7 +17,7 @@ namespace Microsoft.Owin.Security.WsFederation
     /// <summary>
     /// OWIN middleware for obtaining identities using WsFederation protocol.
     /// </summary>
-    public class WsFederationAuthenticationMiddleware : AuthenticationMiddleware<WsFederationAuthenticationOptions>
+    public class WSFederationAuthenticationMiddleware : AuthenticationMiddleware<WSFederationAuthenticationOptions>
     {
         private readonly ILogger _logger;
 
@@ -28,10 +28,10 @@ namespace Microsoft.Owin.Security.WsFederation
         /// <param name="app">The OWIN application</param>
         /// <param name="options">Configuration options for the middleware</param>
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "A reference is maintained.")]
-        public WsFederationAuthenticationMiddleware(OwinMiddleware next, IAppBuilder app, WsFederationAuthenticationOptions options)
+        public WSFederationAuthenticationMiddleware(OwinMiddleware next, IAppBuilder app, WSFederationAuthenticationOptions options)
             : base(next, options)
         {
-            _logger = app.CreateLogger<WsFederationAuthenticationMiddleware>();
+            _logger = app.CreateLogger<WSFederationAuthenticationMiddleware>();
 
             if (string.IsNullOrWhiteSpace(Options.TokenValidationParameters.AuthenticationType))
             {
@@ -41,7 +41,7 @@ namespace Microsoft.Owin.Security.WsFederation
             if (Options.StateDataFormat == null)
             {
                 var dataProtector = app.CreateDataProtector(
-                    typeof(WsFederationAuthenticationMiddleware).FullName,
+                    typeof(WSFederationAuthenticationMiddleware).FullName,
                     Options.AuthenticationType, "v1");
                 Options.StateDataFormat = new PropertiesDataFormat(dataProtector);
             }
@@ -53,7 +53,7 @@ namespace Microsoft.Owin.Security.WsFederation
 
             if (Options.Notifications == null)
             {
-                Options.Notifications = new WsFederationAuthenticationNotifications();
+                Options.Notifications = new WSFederationAuthenticationNotifications();
             }
 
             Uri wreply;
@@ -83,13 +83,13 @@ namespace Microsoft.Owin.Security.WsFederation
         /// Provides the <see cref="AuthenticationHandler"/> object for processing authentication-related requests.
         /// </summary>
         /// <returns>An <see cref="AuthenticationHandler"/> configured with the <see cref="WsFederationAuthenticationOptions"/> supplied to the constructor.</returns>
-        protected override AuthenticationHandler<WsFederationAuthenticationOptions> CreateHandler()
+        protected override AuthenticationHandler<WSFederationAuthenticationOptions> CreateHandler()
         {
-            return new WsFederationAuthenticationHandler(_logger);
+            return new WSFederationAuthenticationHandler(_logger);
         }
 
         [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "Managed by caller")]
-        private static HttpMessageHandler ResolveHttpMessageHandler(WsFederationAuthenticationOptions options)
+        private static HttpMessageHandler ResolveHttpMessageHandler(WSFederationAuthenticationOptions options)
         {
             HttpMessageHandler handler = options.BackchannelHttpHandler ?? new WebRequestHandler();
 

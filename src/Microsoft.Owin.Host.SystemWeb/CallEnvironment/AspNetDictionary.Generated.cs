@@ -943,7 +943,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
                     }
                    break;
                 case 21:
-                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIpAddress", StringComparison.Ordinal))
+                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIPAddress", StringComparison.Ordinal))
                     {
                         return true;
                     }
@@ -1197,7 +1197,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
                     }
                    break;
                 case 21:
-                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIpAddress", StringComparison.Ordinal))
+                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIPAddress", StringComparison.Ordinal))
                     {
                         value = ServerLocalIpAddress;
                         return true;
@@ -1436,7 +1436,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
                     }
                    break;
                 case 21:
-                    if (string.Equals(key, "server.LocalIpAddress", StringComparison.Ordinal))
+                    if (string.Equals(key, "server.LocalIPAddress", StringComparison.Ordinal))
                     {
                         ServerLocalIpAddress = (string)value;
                         return true;
@@ -1746,7 +1746,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
                     }
                    break;
                 case 21:
-                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIpAddress", StringComparison.Ordinal))
+                    if (((_flag0 & 0x8000000u) != 0) && string.Equals(key, "server.LocalIPAddress", StringComparison.Ordinal))
                     {
                         _initFlag0 &= ~0x8000000u;
                         _flag0 &= ~0x8000000u;
@@ -1910,7 +1910,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
             }
             if (((_flag0 & 0x8000000u) != 0))
             {
-                yield return "server.LocalIpAddress";
+                yield return "server.LocalIPAddress";
             }
             if (((_flag0 & 0x10000000u) != 0))
             {
@@ -2252,7 +2252,7 @@ namespace Microsoft.Owin.Host.SystemWeb.CallEnvironment
             }
             if (((_flag0 & 0x8000000u) != 0))
             {
-                yield return new KeyValuePair<string, object>("server.LocalIpAddress", ServerLocalIpAddress);
+                yield return new KeyValuePair<string, object>("server.LocalIPAddress", ServerLocalIpAddress);
             }
             if (((_flag0 & 0x10000000u) != 0))
             {

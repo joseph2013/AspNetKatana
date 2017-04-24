@@ -13,7 +13,7 @@ namespace Microsoft.Owin.Security.WsFederation
     /// <summary>
     /// Configuration options for <see cref="WsFederationAuthenticationMiddleware"/>
     /// </summary>
-    public class WsFederationAuthenticationOptions : AuthenticationOptions
+    public class WSFederationAuthenticationOptions : AuthenticationOptions
     {
         private SecurityTokenHandlerCollection _securityTokenHandlers;
         private TokenValidationParameters _tokenValidationParameters;
@@ -21,8 +21,8 @@ namespace Microsoft.Owin.Security.WsFederation
         /// <summary>
         /// Initializes a new <see cref="WsFederationAuthenticationOptions"/>
         /// </summary>
-        public WsFederationAuthenticationOptions()
-            : this(WsFederationAuthenticationDefaults.AuthenticationType)
+        public WSFederationAuthenticationOptions()
+            : this(WSFederationAuthenticationDefaults.AuthenticationType)
         {
         }
 
@@ -32,12 +32,12 @@ namespace Microsoft.Owin.Security.WsFederation
         /// <param name="authenticationType"> corresponds to the IIdentity AuthenticationType property. <see cref="AuthenticationOptions.AuthenticationType"/>.</param>
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "WsFederation", Justification = "Not a LOC field")]
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
-            MessageId = "Microsoft.Owin.Security.WsFederation.WsFederationAuthenticationOptions.set_Caption(System.String)", Justification = "Not a LOC field")]
-        public WsFederationAuthenticationOptions(string authenticationType)
+            MessageId = "Microsoft.Owin.Security.WsFederation.WSFederationAuthenticationOptions.set_Caption(System.String)", Justification = "Not a LOC field")]
+        public WSFederationAuthenticationOptions(string authenticationType)
             : base(authenticationType)
         {
             AuthenticationMode = Security.AuthenticationMode.Active;
-            Caption = WsFederationAuthenticationDefaults.Caption;
+            Caption = WSFederationAuthenticationDefaults.Caption;
             _tokenValidationParameters = new TokenValidationParameters();
             BackchannelTimeout = TimeSpan.FromMinutes(1);
             UseTokenLifetime = true;
@@ -105,7 +105,7 @@ namespace Microsoft.Owin.Security.WsFederation
         /// <summary>
         /// Gets or sets the <see cref="WsFederationAuthenticationNotifications"/> to call when processing WsFederation messages.
         /// </summary>
-        public WsFederationAuthenticationNotifications Notifications { get; set; }
+        public WSFederationAuthenticationNotifications Notifications { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="SecurityTokenHandlerCollection"/> of <see cref="SecurityTokenHandler"/>s used to read and validate <see cref="SecurityToken"/>s.

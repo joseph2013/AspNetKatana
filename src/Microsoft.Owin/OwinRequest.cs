@@ -239,10 +239,10 @@ namespace Microsoft.Owin
         }
 
         /// <summary>
-        /// Gets or set the server.LocalIpAddress.
+        /// Gets or set the server.LocalIPAddress.
         /// </summary>
-        /// <returns>The server.LocalIpAddress.</returns>
-        public virtual string LocalIpAddress
+        /// <returns>The server.LocalIPAddress.</returns>
+        public virtual string LocalIPAddress
         {
             get { return Get<string>(OwinConstants.CommonKeys.LocalIpAddress); }
             set { Set(OwinConstants.CommonKeys.LocalIpAddress, value); }
@@ -286,7 +286,7 @@ namespace Microsoft.Owin
         /// Gets or set the server.RemoteIpAddress.
         /// </summary>
         /// <returns>The server.RemoteIpAddress.</returns>
-        public virtual string RemoteIpAddress
+        public virtual string RemoteIPAddress
         {
             get { return Get<string>(OwinConstants.CommonKeys.RemoteIpAddress); }
             set { Set(OwinConstants.CommonKeys.RemoteIpAddress, value); }

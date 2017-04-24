@@ -138,10 +138,10 @@ namespace Microsoft.Owin
         CancellationToken CallCancelled { get; set; }
 
         /// <summary>
-        /// Gets or set the server.LocalIpAddress.
+        /// Gets or set the server.LocalIPAddress.
         /// </summary>
-        /// <returns>The server.LocalIpAddress.</returns>
-        string LocalIpAddress { get; set; }
+        /// <returns>The server.LocalIPAddress.</returns>
+        string LocalIPAddress { get; set; }
 
         /// <summary>
         /// Gets or set the server.LocalPort.
@@ -153,7 +153,7 @@ namespace Microsoft.Owin
         /// Gets or set the server.RemoteIpAddress.
         /// </summary>
         /// <returns>The server.RemoteIpAddress.</returns>
-        string RemoteIpAddress { get; set; }
+        string RemoteIPAddress { get; set; }
 
         /// <summary>
         /// Gets or set the server.RemotePort.

@@ -121,7 +121,7 @@ namespace Katana.Sandbox.WebServer
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
             */
             /*
-            app.UseWsFederationAuthentication(new WsFederationAuthenticationOptions()
+            app.UseWSFederationAuthentication(new WSFederationAuthenticationOptions()
             {
                 Wtrealm = "http://Katana.Sandbox.WebServer",
                 MetadataAddress = "https://login.windows.net/cdc690f9-b6b8-4023-813a-bae7143d1f87/FederationMetadata/2007-06/FederationMetadata.xml",

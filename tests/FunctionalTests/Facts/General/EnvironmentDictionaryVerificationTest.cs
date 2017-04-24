@@ -146,7 +146,7 @@ namespace FunctionalTests.Facts.General
                 ThrowIfKeyNotFound<IDictionary<string, object>>(context, "server.Capabilities");
                 ThrowIfKeyNotFound<string>(context, "server.RemoteIpAddress");
                 ThrowIfKeyNotFound<string>(context, "server.RemotePort");
-                ThrowIfKeyNotFound<string>(context, "server.LocalIpAddress");
+                ThrowIfKeyNotFound<string>(context, "server.LocalIPAddress");
                 ThrowIfKeyNotFound<string>(context, "server.LocalPort");
                 ThrowIfKeyNotFound<bool>(context, "server.IsLocal");
 

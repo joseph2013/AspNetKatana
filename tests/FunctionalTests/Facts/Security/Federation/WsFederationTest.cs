@@ -69,13 +69,13 @@ namespace FunctionalTests.Facts.Security.Federation
 
             app.UseAuthSignInCookie();
 
-            app.UseWsFederationAuthentication(new WsFederationAuthenticationOptions()
+            app.UseWSFederationAuthentication(new WSFederationAuthenticationOptions()
                 {
                     Wtrealm = "http://Automation1",
                     MetadataAddress = "https://login.windows.net/4afbc689-805b-48cf-a24c-d4aa3248a248/federationmetadata/2007-06/federationmetadata.xml",
                     BackchannelHttpHandler = new WaadMetadataDocumentHandler(),
                     StateDataFormat = new CustomStateDataFormat(),
-                    Notifications = new WsFederationAuthenticationNotifications()
+                    Notifications = new WSFederationAuthenticationNotifications()
                     {
                         MessageReceived = notification =>
                             {
@@ -133,7 +133,7 @@ namespace FunctionalTests.Facts.Security.Federation
                             if (context.Authentication.User.Identity.IsAuthenticated)
                             {
                                 var authProperties = new AuthenticationProperties() { RedirectUri = context.Request.Uri.AbsoluteUri };
-                                context.Authentication.SignOut(authProperties, WsFederationAuthenticationDefaults.AuthenticationType);
+                                context.Authentication.SignOut(authProperties, WSFederationAuthenticationDefaults.AuthenticationType);
                                 await context.Response.WriteAsync("Signing out...");
                             }
                             else
@@ -179,7 +179,7 @@ namespace FunctionalTests.Facts.Security.Federation
             });
             #endregion
 
-            app.UseExternalApplication(WsFederationAuthenticationDefaults.AuthenticationType);
+            app.UseExternalApplication(WSFederationAuthenticationDefaults.AuthenticationType);
         }
 
         private class WaadMetadataDocumentHandler : WebRequestHandler

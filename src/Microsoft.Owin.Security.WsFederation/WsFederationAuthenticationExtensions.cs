@@ -9,7 +9,7 @@ namespace Owin
     /// <summary>
     /// Extension methods for using <see cref="WsFederationAuthenticationMiddleware"/>
     /// </summary>
-    public static class WsFederationAuthenticationExtensions
+    public static class WSFederationAuthenticationExtensions
     {
         /// <summary>
         /// Adds the <see cref="WsFederationAuthenticationMiddleware"/> into the OWIN runtime.
@@ -18,7 +18,7 @@ namespace Owin
         /// <param name="wtrealm">The application identifier.</param>
         /// <param name="metadataAddress">The address to retrieve the wsFederation metadata from.</param>
         /// <returns>The updated <see cref="IAppBuilder"/></returns>
-        public static IAppBuilder UseWsFederationAuthentication(this IAppBuilder app, string wtrealm, string metadataAddress)
+        public static IAppBuilder UseWSFederationAuthentication(this IAppBuilder app, string wtrealm, string metadataAddress)
         {
             if (app == null)
             {
@@ -33,7 +33,7 @@ namespace Owin
                 throw new ArgumentNullException("metadataAddress");
             }
 
-            return app.UseWsFederationAuthentication(new WsFederationAuthenticationOptions()
+            return app.UseWSFederationAuthentication(new WSFederationAuthenticationOptions()
             {
                 Wtrealm = wtrealm,
                 MetadataAddress = metadataAddress,
@@ -44,9 +44,9 @@ namespace Owin
         /// Adds the <see cref="WsFederationAuthenticationMiddleware"/> into the OWIN runtime.
         /// </summary>
         /// <param name="app">The <see cref="IAppBuilder"/> passed to the configuration method</param>
-        /// <param name="wsFederationOptions">WsFederationAuthenticationOptions configuration options</param>
+        /// <param name="wsFederationOptions">WSFederationAuthenticationOptions configuration options</param>
         /// <returns>The updated <see cref="IAppBuilder"/></returns>
-        public static IAppBuilder UseWsFederationAuthentication(this IAppBuilder app, WsFederationAuthenticationOptions wsFederationOptions)
+        public static IAppBuilder UseWSFederationAuthentication(this IAppBuilder app, WSFederationAuthenticationOptions wsFederationOptions)
         {
             if (app == null)
             {
@@ -62,7 +62,7 @@ namespace Owin
                 wsFederationOptions.TokenValidationParameters.ValidAudience = wsFederationOptions.Wtrealm;
             }
 
-            return app.Use<WsFederationAuthenticationMiddleware>(app, wsFederationOptions);
+            return app.Use<WSFederationAuthenticationMiddleware>(app, wsFederationOptions);
         }
     }
 }
